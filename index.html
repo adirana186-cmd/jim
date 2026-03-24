@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gym Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>🏋️ Gym Panel</h2>
+        <ul>
+            <li onclick="showSection('dashboard')">Dashboard</li>
+            <li onclick="showSection('members')">Members</li>
+            <li onclick="showSection('addMember')">Add Member</li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- Dashboard -->
+        <div id="dashboard" class="section">
+            <h1>Dashboard</h1>
+            <div class="cards">
+                <div class="card">Total Members: <span id="totalMembers">0</span></div>
+                <div class="card">Active Plans: 5</div>
+                <div class="card">Revenue: ₹50,000</div>
+            </div>
+        </div>
+
+        <!-- Members -->
+        <div id="members" class="section hidden">
+            <h1>Members List</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Plan</th>
+                    </tr>
+                </thead>
+                <tbody id="memberTable"></tbody>
+            </table>
+        </div>
+
+        <!-- Add Member -->
+        <div id="addMember" class="section hidden">
+            <h1>Add Member</h1>
+            <form id="memberForm">
+                <input type="text" id="name" placeholder="Name" required>
+                <input type="number" id="age" placeholder="Age" required>
+                <input type="text" id="plan" placeholder="Plan" required>
+                <button type="submit">Add Member</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
