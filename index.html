@@ -1,61 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Gym Management System</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Gym Pro System</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <h2>🏋️ Gym Panel</h2>
-        <ul>
-            <li onclick="showSection('dashboard')">Dashboard</li>
-            <li onclick="showSection('members')">Members</li>
-            <li onclick="showSection('addMember')">Add Member</li>
-        </ul>
+<!-- LOGIN -->
+<div id="loginPage" class="center glass fadeIn">
+    <h1>🏋️ Gym Pro</h1>
+    <select id="role">
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+    </select>
+    <input type="text" id="username" placeholder="Enter Name">
+    <button onclick="login()">Login</button>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel" class="hidden">
+    <div class="sidebar glass">
+        <h2>Admin</h2>
+        <button onclick="show('dashboard')">Dashboard</button>
+        <button onclick="show('members')">Members</button>
+        <button onclick="show('attendance')">Attendance</button>
+        <button onclick="show('fees')">Fees</button>
+        <button onclick="show('feedback')">Feedback</button>
+        <button onclick="logout()">Logout</button>
     </div>
 
-    <!-- Main Content -->
-    <div class="main">
-        <!-- Dashboard -->
+    <div class="content">
+
         <div id="dashboard" class="section">
             <h1>Dashboard</h1>
             <div class="cards">
-                <div class="card">Total Members: <span id="totalMembers">0</span></div>
-                <div class="card">Active Plans: 5</div>
-                <div class="card">Revenue: ₹50,000</div>
+                <div class="card">Members: <span id="total"></span></div>
+                <div class="card">Revenue: ₹<span id="revenue"></span></div>
             </div>
         </div>
 
-        <!-- Members -->
         <div id="members" class="section hidden">
-            <h1>Members List</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Age</th>
-                        <th>Plan</th>
-                    </tr>
-                </thead>
-                <tbody id="memberTable"></tbody>
-            </table>
+            <h2>Add Member</h2>
+            <input id="name" placeholder="Name">
+            <input id="age" placeholder="Age">
+            <input id="plan" placeholder="Plan">
+            <input id="fee" placeholder="Fee">
+            <button onclick="addMember()">Add</button>
+
+            <h3>Member List</h3>
+            <ul id="memberList"></ul>
         </div>
 
-        <!-- Add Member -->
-        <div id="addMember" class="section hidden">
-            <h1>Add Member</h1>
-            <form id="memberForm">
-                <input type="text" id="name" placeholder="Name" required>
-                <input type="number" id="age" placeholder="Age" required>
-                <input type="text" id="plan" placeholder="Plan" required>
-                <button type="submit">Add Member</button>
-            </form>
+        <div id="attendance" class="section hidden">
+            <h2>Attendance</h2>
+            <ul id="attendanceList"></ul>
         </div>
+
+        <div id="fees" class="section hidden">
+            <h2>Fees</h2>
+            <ul id="feesList"></ul>
+        </div>
+
+        <div id="feedback" class="section hidden">
+            <h2>User Feedback</h2>
+            <ul id="feedbackList"></ul>
+        </div>
+
     </div>
+</div>
+
+<!-- USER PANEL -->
+<div id="userPanel" class="hidden center">
+    <h1>Welcome <span id="userName"></span></h1>
+
+    <button onclick="userMarkAttendance()">Mark My Attendance</button>
+
+    <h2>Your Attendance</h2>
+    <ul id="userAttendance"></ul>
+
+    <h2>Your Fee</h2>
+    <p id="userFee"></p>
+
+    <h2>Feedback</h2>
+    <input id="feedbackInput" placeholder="Write feedback">
+    <button onclick="submitFeedback()">Submit</button>
+
+    <button onclick="logout()">Logout</button>
 </div>
 
 <script src="script.js"></script>
